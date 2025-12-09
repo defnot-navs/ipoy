@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TLE Cookery 9 - Culinary Arts & Food Service</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-attachment: fixed;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Simple animated background pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav a:hover {
+            color: #667eea;
+        }
+
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #667eea;
+            transition: width 0.3s ease;
+        }
+
+        .nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 80px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Main Content */
+        .container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .card-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+
+        .card p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card ul li {
+            padding: 8px 0;
+            color: #555;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .card ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: white;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* Content Section */
+        .content-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .content-section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        .content-section h3 {
+            color: #764ba2;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        .content-section p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .content-section ul, .content-section ol {
+            margin: 15px 0 15px 30px;
+            color: #555;
+        }
+
+        .content-section li {
+            margin-bottom: 10px;
+        }
+
+        /* Two Column Layout */
+        .two-column {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .column-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .column-item h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .highlight-box h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer p {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .footer-links {
+            margin: 20px 0;
+        }
+
+        .footer-links a {
+            color: #667eea;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #764ba2;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .nav {
+                justify-content: center;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+        }
+
+        /* Simple fade-in animation */
+        @media (prefers-reduced-motion: no-preference) {
+            .card, .content-section {
+                opacity: 0;
+                animation: fadeIn 0.6s ease forwards;
+            }
+
+            .card:nth-child(1) { animation-delay: 0.1s; }
+            .card:nth-child(2) { animation-delay: 0.2s; }
+            .card:nth-child(3) { animation-delay: 0.3s; }
+            .card:nth-child(4) { animation-delay: 0.4s; }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        }
+
+        /* No animations for low-end devices */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Game Styles */
+        .game-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .game-board {
+            max-width: 600px;
+            margin: 30px auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+
+        .game-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .stat-item {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-weight: bold;
+            min-width: 120px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+
+        .stat-value {
+            font-size: 24px;
+        }
+
+        .question-card {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .question-text {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .options-grid {
+            display: grid;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .option-btn {
+            background: white;
+            border: 3px solid #e0e0e0;
+            padding: 20px;
+            border-radius: 12px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .option-btn:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+            transform: translateX(5px);
+        }
+
+        .option-btn.correct {
+            background: #d4edda;
+            border-color: #28a745;
+            animation: correctPulse 0.5s ease;
+        }
+
+        .option-btn.wrong {
+            background: #f8d7da;
+            border-color: #dc3545;
+            animation: wrongShake 0.5s ease;
+        }
+
+        .option-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        @keyframes correctPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes wrongShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .game-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+
+        .game-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .game-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .feedback {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.correct {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .feedback.wrong {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .game-over {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            display: none;
+        }
+
+        .game-over.show {
+            display: block;
+        }
+
+        .game-over h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .final-score {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .performance-message {
+            font-size: 20px;
+            margin: 15px 0;
+            opacity: 0.95;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">🍳 TLE Cookery 9</div>
+            <nav class="nav">
+                <a href="#home">Home</a>
+                <a href="#topics">Topics</a>
+                <a href="#skills">Skills</a>
+                <a href="#safety">Safety</a>
+                <a href="#recipes">Recipes</a>
+                <a href="#game">Game</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>TLE Cookery Grade 9</h1>
+        <p>Master the Art of Culinary Skills & Food Service Management</p>
+        <a href="#topics" class="cta-button">Explore Topics</a>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Topics Overview -->
+        <h2 class="section-title" id="topics">Core Topics</h2>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">🔪</div>
+                <h3>Basic Knife Skills</h3>
+                <p>Learn proper knife handling and cutting techniques</p>
+                <ul>
+                    <li>Knife safety and maintenance</li>
+                    <li>Basic cuts: Dice, Julienne, Chiffonade</li>
+                    <li>Proper grip and posture</li>
+                    <li>Cutting board techniques</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🥘</div>
+                <h3>Cooking Methods</h3>
+                <p>Master different cooking techniques and applications</p>
+                <ul>
+                    <li>Dry heat methods (Baking, Roasting)</li>
+                    <li>Moist heat methods (Boiling, Steaming)</li>
+                    <li>Combination methods (Braising, Stewing)</li>
+                    <li>Temperature control</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🍽️</div>
+                <h3>Food Service</h3>
+                <p>Understanding professional food service operations</p>
+                <ul>
+                    <li>Table setting and etiquette</li>
+                    <li>Service styles and procedures</li>
+                    <li>Menu planning basics</li>
+                    <li>Customer service skills</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🧼</div>
+                <h3>Kitchen Safety & Sanitation</h3>
+                <p>Essential safety and hygiene practices</p>
+                <ul>
+                    <li>Personal hygiene standards</li>
+                    <li>Food safety principles</li>
+                    <li>Cross-contamination prevention</li>
+                    <li>Proper storage procedures</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Detailed Content -->
+        <div class="content-section" id="skills">
+            <h2>🎯 Essential Culinary Skills</h2>
+            
+            <h3>1. Measuring and Weighing</h3>
+            <p>Accurate measurement is crucial in cooking and baking. Learn to use various measuring tools and understand the difference between volume and weight measurements.</p>
+            
+            <div class="two-column">
+                <div class="column-item">
+                    <h4>Volume Measurements</h4>
+                    <ul>
+                        <li>Teaspoons and tablespoons</li>
+                        <li>Measuring cups (liquid & dry)</li>
+                        <li>Reading measuring scales</li>
+                    </ul>
+                </div>
+                <div class="column-item">
+                    <h4>Weight Measurements</h4>
+                    <ul>
+                        <li>Kitchen scales usage</li>
+                        <li>Metric vs imperial units</li>
+                        <li>Recipe conversions</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>2. Mise en Place</h3>
+            <p><em>"Everything in its place"</em> - The professional practice of preparing and organizing ingredients before cooking. This includes:</p>
+            <ul>
+                <li>Reading and understanding recipes thoroughly</li>
+                <li>Gathering all necessary ingredients and equipment</li>
+                <li>Preparing ingredients (washing, peeling, cutting)</li>
+                <li>Organizing workspace efficiently</li>
+            </ul>
+
+            <h3>3. Basic Seasoning & Flavoring</h3>
+            <p>Understanding how to enhance food flavors using various seasonings, herbs, and spices:</p>
+            <ul>
+                <li>Salt types and proper usage</li>
+                <li>Common herbs (basil, parsley, thyme, rosemary)</li>
+                <li>Essential spices (pepper, paprika, cumin)</li>
+                <li>Balancing flavors (sweet, salty, sour, bitter, umami)</li>
+            </ul>
+        </div>
+
+        <div class="content-section" id="safety">
+            <h2>🛡️ Kitchen Safety & Hygiene</h2>
+            
+            <h3>Personal Hygiene in the Kitchen</h3>
+            <ol>
+                <li><strong>Hand Washing:</strong> Wash hands thoroughly with soap for at least 20 seconds before handling food, after using the restroom, and after touching raw meat</li>
+                <li><strong>Proper Attire:</strong> Wear clean apron, tie back long hair, remove jewelry, and keep nails short and clean</li>
+                <li><strong>Health Awareness:</strong> Do not handle food when sick, cover cuts with bandages and gloves</li>
+            </ol>
+
+            <h3>Food Safety Principles</h3>
+            <div class="highlight-box">
+                <h3>The 4 C's of Food Safety</h3>
+                <div class="two-column">
+                    <div>
+                        <p><strong>🧹 CLEAN:</strong> Wash hands and surfaces often</p>
+                    </div>
+                    <div>
+                        <p><strong>🔀 SEPARATE:</strong> Prevent cross-contamination</p>
+                    </div>
+                    <div>
+                        <p><strong>🔥 COOK:</strong> Cook to proper temperatures</p>
+                    </div>
+                    <div>
+                        <p><strong>❄️ CHILL:</strong> Refrigerate food promptly</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Common Kitchen Hazards & Prevention</h3>
+            <div class="two-column">
+                <div class="column-item">
+                    <h4>Burns & Scalds</h4>
+                    <ul>
+                        <li>Use dry pot holders</li>
+                        <li>Turn pot handles inward</li>
+                        <li>Be careful with steam</li>
+                    </ul>
+                </div>
+                <div class="column-item">
+                    <h4>Cuts & Injuries</h4>
+                    <ul>
+                        <li>Keep knives sharp</li>
+                        <li>Cut away from body</li>
+                        <li>Use proper cutting boards</li>
+                    </ul>
+                </div>
+                <div class="column-item">
+                    <h4>Slips & Falls</h4>
+                    <ul>
+                        <li>Clean spills immediately</li>
+                        <li>Wear non-slip footwear</li>
+                        <li>Keep floors dry</li>
+                    </ul>
+                </div>
+                <div class="column-item">
+                    <h4>Fire Safety</h4>
+                    <ul>
+                        <li>Know extinguisher location</li>
+                        <li>Never leave cooking unattended</li>
+                        <li>Keep flammables away from heat</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section" id="recipes">
+            <h2>📖 Basic Recipes to Master</h2>
+            
+            <h3>Beginner-Friendly Dishes</h3>
+            <p>Start your culinary journey with these fundamental recipes:</p>
+
+            <div class="two-column">
+                <div class="column-item">
+                    <h4>🍳 Scrambled Eggs</h4>
+                    <p><strong>Skills practiced:</strong> Heat control, timing, seasoning</p>
+                    <p>Perfect for learning temperature management and achieving desired texture.</p>
+                </div>
+                <div class="column-item">
+                    <h4>🥗 Garden Salad</h4>
+                    <p><strong>Skills practiced:</strong> Knife skills, presentation, dressing</p>
+                    <p>Learn proper vegetable preparation and flavor balancing.</p>
+                </div>
+                <div class="column-item">
+                    <h4>🍝 Pasta with Tomato Sauce</h4>
+                    <p><strong>Skills practiced:</strong> Boiling, sauce making, timing</p>
+                    <p>Master pasta cooking and basic sauce preparation.</p>
+                </div>
+                <div class="column-item">
+                    <h4>🍲 Vegetable Soup</h4>
+                    <p><strong>Skills practiced:</strong> Sautéing, simmering, seasoning</p>
+                    <p>Combine multiple techniques in one dish.</p>
+                </div>
+            </div>
+
+            <h3>Filipino Cuisine Basics</h3>
+            <p>Explore traditional Filipino dishes commonly taught in TLE Cookery:</p>
+            <ul>
+                <li><strong>Adobo:</strong> Learn braising and marinating techniques</li>
+                <li><strong>Sinigang:</strong> Understanding sour soup base and vegetable preparation</li>
+                <li><strong>Pancit:</strong> Stir-frying noodles and vegetables</li>
+                <li><strong>Lumpia:</strong> Wrapping and frying techniques</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>🎓 Learning Competencies</h2>
+            <p>By the end of TLE Cookery 9, students should be able to:</p>
+            
+            <div class="two-column">
+                <div class="column-item">
+                    <h4>Knowledge</h4>
+                    <ul>
+                        <li>Understand food safety principles</li>
+                        <li>Know various cooking methods</li>
+                        <li>Identify kitchen tools and equipment</li>
+                        <li>Recognize ingredient quality</li>
+                    </ul>
+                </div>
+                <div class="column-item">
+                    <h4>Skills</h4>
+                    <ul>
+                        <li>Demonstrate proper knife techniques</li>
+                        <li>Execute basic cooking methods</li>
+                        <li>Follow recipes accurately</li>
+                        <li>Practice food safety procedures</li>
+                    </ul>
+                </div>
+                <div class="column-item">
+                    <h4>Attitude</h4>
+                    <ul>
+                        <li>Work cooperatively in teams</li>
+                        <li>Maintain cleanliness and order</li>
+                        <li>Show creativity and initiative</li>
+                        <li>Demonstrate professionalism</li>
+                    </ul>
+                </div>
+                <div class="column-item">
+                    <h4>Values</h4>
+                    <ul>
+                        <li>Practice food waste reduction</li>
+                        <li>Respect cultural food traditions</li>
+                        <li>Value quality and precision</li>
+                        <li>Promote healthy eating habits</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="highlight-box"> in TLE Cookery</h3>
+            <p>✓ Always read the recipe completely before starting</p>
+            <p>✓ Practice knife skills regularly for improvement</p>
+            <p>✓ Keep your workspace clean and organized</p>
+            <p>✓ Ask questions when unsure about procedures</p>
+            <p>✓ Taste and adjust seasonings as you cook</p>
+            <p>✓ Learn from mistakes and keep practicing</p>
+        </div>
+
+        <!-- Cookery Quiz Game -->
+        <h2 class="section-title" id="game">🎮 Test Your Knowledge</h2>
+        <div class="game-container">
+            <h2>Cookery Quiz Challenge</h2>
+            <p style="color: #666; margin: 15px 0;">Test what you've learned about TLE Cookery! Answer questions correctly to earn points.</p>
+
+            <div class="game-board">
+                <div class="game-stats">
+                    <div class="stat-item">
+                        <div class="stat-label">Score</div>
+                        <div class="stat-value" id="score">0</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Question</div>
+                        <div class="stat-value"><span id="currentQuestion">1</span>/<span id="totalQuestions">10</span></div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Streak</div>
+                        <div class="stat-value" id="streak">0</div>
+                    </div>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressBar" style="width: 0%"></div>
+                </div>
+
+                <div id="quizContent">
+                    <div class="question-card">
+                        <div class="question-text" id="questionText">Click "Start Game" to begin!</div>
+                        <div class="options-grid" id="optionsContainer"></div>
+                        <div class="feedback" id="feedback"></div>
+                    </div>
+                </div>
+
+                <div class="game-over" id="gameOver">
+                    <h3>🎉 Quiz Complete!</h3>
+                    <div class="final-score" id="finalScore">0/10</div>
+                    <div class="performance-message" id="performanceMessage"></div>
+                    <button class="game-btn" onclick="restartGame()">Play Again</button>
+                </div>
+
+                <div id="gameControls">
+                    <button class="game-btn" id="startBtn" onclick="startGame()">Start Game</button>
+                    <button class="game-btn" id="nextBtn" onclick="nextQuestion()" style="display: none;">Next Question</button>
+                </div>
+            </div>
+        </div>
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-content">
+            <h3 style="color: #667eea; margin-bottom: 15px;">TLE Cookery 9</h3>
+            <p>Building foundational culinary skills for future chefs and food service professionals</p>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#topics">Topics</a>
+                <a href="#skills">Skills</a>
+                <a href="#safety">Safety</a>
+                <a href="#recipes">Recipes</a>
+                <a href="#game">Game</a>
+            </div>
+            <p style="margin-top: 20px; font-size: 14px;">© 2025 TLE Cookery Education. All rights reserved.</p>
+            <p style="font-size: 12px; color: #999;">Optimized for performance on all devices</p>
+        </div>
+    </footer>
+    <script>
+
+            // Quiz Game Logic
+        const quizQuestions = [
+            {
+                question: "What does 'Mise en Place' mean in cooking?",
+                options: ["Mix everything together", "Everything in its place", "Cook slowly", "Add more spices"],
+                correct: 1
+            },
+            {
+                question: "Which of these is a dry heat cooking method?",
+                options: ["Boiling", "Steaming", "Roasting", "Poaching"],
+                correct: 2
+            },
+            {
+                question: "What is the first step in proper hand washing?",
+                options: ["Apply soap", "Wet hands with water", "Dry hands", "Scrub for 10 seconds"],
+                correct: 1
+            },
+            {
+                question: "Which cut produces small cube-shaped pieces?",
+                options: ["Julienne", "Chiffonade", "Dice", "Mince"],
+                correct: 2
+            },
+            {
+                question: "At what temperature should a refrigerator be kept for food safety?",
+                options: ["Below 40°F (4°C)", "50°F (10°C)", "60°F (15°C)", "70°F (21°C)"],
+                correct: 0
+            },
+            {
+                question: "What are the 4 C's of food safety?",
+                options: ["Cut, Cook, Chill, Clean", "Clean, Separate, Cook, Chill", "Cool, Cut, Cook, Clean", "Cook, Combine, Clean, Cover"],
+                correct: 1
+            },
+            {
+                question: "Which herb is commonly used in Italian cooking?",
+                options: ["Cilantro", "Basil", "Dill", "Tarragon"],
+                correct: 1
+            },
+            {
+                question: "What type of cutting board is best for raw meat?",
+                options: ["Wooden", "Glass", "Plastic (separate)", "Marble"],
+                correct: 2
+            },
+            {
+                question: "Which Filipino dish involves braising in vinegar and soy sauce?",
+                options: ["Sinigang", "Adobo", "Kare-kare", "Pancit"],
+                correct: 1
+            },
+            {
+                question: "What should you do if oil catches fire in a pan?",
+                options: ["Pour water on it", "Cover with a lid", "Move the pan", "Blow on it"],
+                correct: 1
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let streak = 0;
+        let gameStarted = false;
+        let answered = false;
+
+        function startGame() {
+            gameStarted = true;
+            currentQuestionIndex = 0;
+            score = 0;
+            streak = 0;
+            answered = false;
+            
+            document.getElementById('score').textContent = '0';
+            document.getElementById('streak').textContent = '0';
+            document.getElementById('currentQuestion').textContent = '1';
+            document.getElementById('gameOver').classList.remove('show');
+            document.getElementById('startBtn').style.display = 'none';
+            document.getElementById('nextBtn').style.display = 'none';
+            
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            if (currentQuestionIndex >= quizQuestions.length) {
+                endGame();
+                return;
+            }
+
+            answered = false;
+            const question = quizQuestions[currentQuestionIndex];
+            
+            document.getElementById('questionText').textContent = question.question;
+            document.getElementById('currentQuestion').textContent = currentQuestionIndex + 1;
+            document.getElementById('feedback').classList.remove('show', 'correct', 'wrong');
+            document.getElementById('nextBtn').style.display = 'none';
+            
+            // Update progress bar
+            const progress = ((currentQuestionIndex) / quizQuestions.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            
+            // Load options
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.textContent = option;
+                btn.onclick = () => checkAnswer(index);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(selectedIndex) {
+            if (answered) return;
+            
+            answered = true;
+            const question = quizQuestions[currentQuestionIndex];
+            const buttons = document.querySelectorAll('.option-btn');
+            const feedback = document.getElementById('feedback');
+            
+            buttons.forEach(btn => btn.disabled = true);
+            
+            if (selectedIndex === question.correct) {
+                buttons[selectedIndex].classList.add('correct');
+                score += 10;
+                streak++;
+                
+                if (streak >= 3) {
+                    score += 5; // Bonus for streak
+                    feedback.textContent = `🔥 Correct! +10 points (+5 streak bonus!)`;
+                } else {
+                    feedback.textContent = '✓ Correct! +10 points';
+                }
+                
+                feedback.classList.add('show', 'correct');
+                document.getElementById('score').textContent = score;
+                document.getElementById('streak').textContent = streak;
+            } else {
+                buttons[selectedIndex].classList.add('wrong');
+                buttons[question.correct].classList.add('correct');
+                streak = 0;
+                
+                feedback.textContent = `✗ Wrong! The correct answer is: ${question.options[question.correct]}`;
+                feedback.classList.add('show', 'wrong');
+                document.getElementById('streak').textContent = '0';
+            }
+            
+            document.getElementById('nextBtn').style.display = 'inline-block';
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            loadQuestion();
+        }
+
+        function endGame() {
+            document.getElementById('quizContent').style.display = 'none';
+            document.getElementById('gameControls').style.display = 'none';
+            document.getElementById('gameOver').classList.add('show');
+            
+            const finalScore = document.getElementById('finalScore');
+            finalScore.textContent = `${score} points (${Math.floor(score / 10)}/10 correct)`;
+            
+            const performanceMessage = document.getElementById('performanceMessage');
+            const correctAnswers = Math.floor(score / 10);
+            
+            if (correctAnswers === 10) {
+                performanceMessage.textContent = '🏆 Perfect Score! You\'re a Cookery Master!';
+            } else if (correctAnswers >= 8) {
+                performanceMessage.textContent = '⭐ Excellent! You know your cookery well!';
+            } else if (correctAnswers >= 6) {
+                performanceMessage.textContent = '👍 Good job! Keep studying to improve!';
+            } else if (correctAnswers >= 4) {
+                performanceMessage.textContent = '📚 Not bad! Review the topics and try again!';
+            } else {
+                performanceMessage.textContent = '💪 Keep learning! Practice makes perfect!';
+            }
+            
+            // Update progress to 100%
+            document.getElementById('progressBar').style.width = '100%';
+        }
+
+        function restartGame() {
+            document.getElementById('quizContent').style.display = 'block';
+            document.getElementById('gameControls').style.display = 'block';
+            startGame();
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Simple lazy loading for better performance
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.card, .content-section').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Disable animations for users who prefer reduced motion
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.querySelectorAll('*').forEach(el => {
+                el.style.animation = 'none';
+                el.style.transition = 'none';
+            });
+        }
+    </script>
+</body>
+</html>
